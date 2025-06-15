@@ -36,8 +36,21 @@ header p {
   max-width: 500px;
 }
 
+/* Subheading style: noticeable but not as bold as the main heading */
+.subheading {
+  font-size: 1.15em;      /* Slightly larger than normal text */
+  color: #e0e6ed;         /* Light blue-gray for contrast */
+  font-weight: 400;       /* Normal weight, not bold */
+  margin-top: 10px;
+  margin-bottom: 40px;
+  max-width: 500px;
+  display: block;
+  /* Add a little letter spacing for clarity */
+  letter-spacing: 0.2px;
+}
+
 /* Timeline section styles */
-section {
+.timeline-gallery {
   /* Make the section horizontally scrollable on desktop */
   display: flex;
   flex-direction: row;
@@ -46,7 +59,7 @@ section {
   padding: 32px 16px;
   scroll-snap-type: x mandatory; /* helps snap to cards */
   scroll-behavior: smooth;       /* smooth horizontal scrolling */
-  background: #f5f7fa; /* Light background for gallery area */
+  background: #00A6F0; /* Light background for gallery area */
   width: 100vw;        /* Make section full width */
   /* Remove min-width and max-width */
   margin-top: 24px; /* Less space between header and gallery */
@@ -56,7 +69,7 @@ section {
 .timeline-card {
   /* Each card */
   flex: 0 0 33.33%; /* Show 3 cards at a time on desktop */
-  background: #fff;
+  background: navy ;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(15,45,82,0.08);
   position: relative;
@@ -64,21 +77,22 @@ section {
   width: calc((100vw - 48px) / 3); /* 3 cards + 2 gaps of 24px */
   max-width: none;
   min-width: 0;
-  height: 440px; /* Double the previous height for desktop */
+  height: 440px; /* Card height */
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-start; /* Make sure content starts at the top */
   scroll-snap-align: start;      /* snap each card to the start */
   transition: box-shadow 0.2s;
 }
 
 .timeline-card img {
   width: 100%;
-  height: 380px;       /* Make images taller to fit the new card height */
-  max-height: 380px;   /* Prevent images from overflowing the card */
-  object-fit: contain; /* Show the whole image, no cropping */
+  height: 100%;           /* Image fills the card vertically */
+  object-fit: contain;    /* Show the whole image, no cropping */
   border-radius: 12px 12px 0 0;
   transition: filter 0.3s;
+  flex-grow: 1;           /* Allow image to grow if needed */
 }
 
 /* Hide card text by default */
@@ -160,8 +174,9 @@ section {
 
 /* Responsive: Show 2 cards at a time on tablets */
 @media (max-width: 1023px) and (min-width: 701px) {
-  section {
-    /* Remove max-width for tablet */
+  /* Use .timeline-gallery instead of section */
+  .timeline-gallery {
+    /* No max-width needed */
   }
   .timeline-card {
     width: calc((100vw - 24px) / 2); /* 2 cards + 1 gap */
@@ -176,13 +191,14 @@ section {
 
 /* Responsive: Show 1 card per row and stack vertically on small screens */
 @media (max-width: 700px) {
-  section {
-    max-width: 100%;
+  /* Change from section to .timeline-gallery for correct targeting */
+  .timeline-gallery {
     flex-direction: column; /* Stack cards vertically */
     overflow-x: visible;    /* No horizontal scroll */
     gap: 24px;
     padding: 24px 8px;
     background: #0f2d52; /* Match rest of page on mobile */
+    max-width: 100%;
   }
   .timeline-card {
     width: 100%;
@@ -197,7 +213,8 @@ section {
 
 /* Show scroll bar for horizontal scrolling */
 section {
-  scrollbar-color: #0f2d52 #e0e6ed;
+  /* Use Intel blue for the thumb and a light blue for the track */
+  scrollbar-color: navy #E6E6E6;
   scrollbar-width: thin;
 }
 
@@ -206,11 +223,13 @@ section::-webkit-scrollbar {
   height: 12px;
 }
 section::-webkit-scrollbar-thumb {
-  background: #0f2d52;
+  background: #0055FF;      /* Intel blue */
   border-radius: 6px;
+  /* Make the border thicker and add a shadow for better visibility */
+  box-shadow: 0 0 0 3px #fff inset, 0 0 4px #0f2d52; /* White border and dark blue shadow */
 }
 section::-webkit-scrollbar-track {
-  background: #e0e6ed;
+  background: #e6f0fa;      /* Light blue */
   border-radius: 6px;
 }
 
