@@ -83,7 +83,7 @@ header p {
   align-items: center;
   justify-content: flex-start; /* Make sure content starts at the top */
   scroll-snap-align: start;      /* snap each card to the start */
-  transition: box-shadow 0.2s;
+  transition: box-shadow 0.2s, transform 0.2s; /* Smooth transition for shadow and transform */
 }
 
 .timeline-card img {
@@ -116,6 +116,12 @@ header p {
 /* Show text and overlay on hover */
 .timeline-card:hover::after {
   opacity: 1;
+}
+
+/* Add transform and stronger shadow on hover for engaging effect */
+.timeline-card:hover {
+  transform: scale(1.04); /* Slightly enlarge the card */
+  box-shadow: 0 8px 24px rgba(15,45,82,0.18); /* Stronger shadow */
 }
 
 .timeline-card:hover img {
